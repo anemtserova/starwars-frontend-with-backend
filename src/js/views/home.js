@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import "../../styles/home.scss";
-import Card from "../component/card";
+import { Card } from "../component/card";
 
 export const Home = () => {
 	const [characters, setCharacters] = useState([]);
@@ -57,10 +57,20 @@ export const Home = () => {
 
 	return (
 		<div className="container-fluid">
-			<div>
-				<h1>Characters</h1>
+			<h1>Characters</h1>
+			<div className="d-flex">
 				{characters.map((char, index) => {
-					<Card person={char} key={index} />;
+					return (
+						<Card
+							key={index}
+							person={char}
+							label1="Height: "
+							label2="Eye color: "
+							label3="Birth year: "
+							label4="Gender: "
+							cardImg="https://i.pinimg.com/originals/ae/17/72/ae17724e86d6faa2509a1f27cb65aea5.png"
+						/>
+					);
 				})}
 			</div>
 			<div>
