@@ -1,7 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+import { Link, useParams, useLocation } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	const [showDropdown, setShowDropdown] = useState(false);
+	const [clickedDropdown, setClickedDropdown] = useState(false);
+	let show = "";
+	if (clickedDropdown) show = "show";
 	return (
 		<nav className="navbar navbar-light bg-white mb-3">
 			<Link to="/">
@@ -10,12 +17,29 @@ export const Navbar = () => {
 					className="navbar-brand mb-2 w-75 h-auto "
 				/>
 			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button type="button" className="btn btn-primary">
-						Favorites <span className="badge badge-light">4</span>
-					</button>
-				</Link>
+			<div className={"ml-auto dropdown" + (showDropdown ? "show" : "")}>
+				<button
+					onClick={() => setClickedDropdown(!clickedDropdown)}
+					type="button"
+					className="btn btn-secondary dropdown-toggle"
+					id="dropdownMenuButton"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded={clickedDropdown}>
+					Favorites <span className="badge badge-light">{store.favorites.length}</span>
+				</button>
+				<div
+					className={store.favorites.length > 0 ? "dropdown-menu" + show : " d-none"}
+					aria-labelledby="dropdownMenuButton">
+					{store.favorites.map((el, i) => {
+						return (
+							<li key={i} className="dropdown-item">
+								{el}
+							</li>
+						);
+					})}
+					;
+				</div>
 			</div>
 		</nav>
 	);

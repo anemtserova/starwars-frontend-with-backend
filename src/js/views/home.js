@@ -16,8 +16,8 @@ export const Home = () => {
 				}
 				return resp.json();
 			})
-			.then(data => {
-				setCharacters(data.results);
+			.then(responseJson => {
+				setCharacters(responseJson.results);
 			})
 			.catch(error => {
 				//error handling
@@ -31,8 +31,8 @@ export const Home = () => {
 				}
 				return resp.json();
 			})
-			.then(data => {
-				setPlanets(data.results);
+			.then(responseJson => {
+				setPlanets(responseJson.results);
 			})
 			.catch(error => {
 				//error handling
@@ -46,8 +46,8 @@ export const Home = () => {
 				}
 				return resp.json();
 			})
-			.then(data => {
-				setVehicles(data.results);
+			.then(responseJson => {
+				setVehicles(responseJson.results);
 			})
 			.catch(error => {
 				//error handling
@@ -58,23 +58,31 @@ export const Home = () => {
 	return (
 		<div className="container-fluid">
 			<h1>Characters</h1>
-			<div className="d-flex">
-				{characters.map((char, index) => {
+			<div className="d-flex flex-wrap justify-content-center">
+				{characters.length > 1 &&
+					characters.map((char, index) => {
+						return (
+							<Card
+								key={index}
+								index={index}
+								entity={char}
+								cardImg="https://i.pinimg.com/originals/ae/17/72/ae17724e86d6faa2509a1f27cb65aea5.png"
+							/>
+						);
+					})}
+			</div>
+			<h1>Planets</h1>
+			<div className="d-flex flex-wrap justify-content-center">
+				{planets.map((spaceObj, index) => {
 					return (
 						<Card
 							key={index}
-							person={char}
-							label1="Height: "
-							label2="Eye color: "
-							label3="Birth year: "
-							label4="Gender: "
-							cardImg="https://i.pinimg.com/originals/ae/17/72/ae17724e86d6faa2509a1f27cb65aea5.png"
+							index={index}
+							entity={spaceObj}
+							cardImg="https://c4.wallpaperflare.com/wallpaper/783/413/224/star-wars-wallpaper-preview.jpg"
 						/>
 					);
 				})}
-			</div>
-			<div>
-				<h1>Planets</h1>
 			</div>
 			<div>
 				<h1>Vehicles</h1>

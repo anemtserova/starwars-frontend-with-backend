@@ -1,41 +1,54 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
-export const Card = props => (
-	<div className="card" style={{ width: "18rem" }}>
-		<img src={props.cardImg} className="card-img-top " alt="..." />
-		<div className="card-body">
-			<h5 className="card-title">{props.person.name}</h5>
-			<p className="card-text">
-				{props.label1}
-				{props.person.height}
-			</p>
-			<p className="card-text">
-				{props.label2}
-				{props.person.eye_color}
-			</p>
-			<p className="card-text">
-				{props.label3}
-				{props.person.birth_year}
-			</p>
-			<p className="card-text">
-				{props.label4}
-				{props.person.gender}
-			</p>
-			<button type="button" className="btn btn-success">
-				Read More
-			</button>
-			<span>
-				<button type="button" className="btn btn-warning">
-					<i className="far fa-heart" />
-				</button>
-			</span>
-		</div>
-	</div>
-);
+export const Card = props => {
+	const { store, actions } = useContext(Context);
+	return (
+		<Fragment>
+			<div className="card" style={{ width: "18rem" }}>
+				<img src={props.cardImg} className="card-img-top " alt="..." />
+				<div className="card-body">
+					<h5 className="card-title">{props.entity.name}</h5>
+					<p className="card-text">
+						{Object.keys(props.entity)[1]}: {Object.values(props.entity)[1]}
+					</p>
+					<p className="card-text">
+						{Object.keys(props.entity)[2]}: {Object.values(props.entity)[2]}
+					</p>
+					<p className="card-text">
+						{Object.keys(props.entity)[3]}: {Object.values(props.entity)[3]}
+					</p>
+					<p className="card-text">
+						{Object.keys(props.entity)[4]}: {Object.values(props.entity)[4]}
+					</p>
+					<Link
+						to={{
+							pathname: "/details/" + props.index,
+							state: { entity: props.entity, cardImg: props.cardImg }
+						}}>
+						<button type="button" className="btn btn-success">
+							Read More
+						</button>
+					</Link>
+					<span>
+						<button
+							onClick={() => actions.addFavorite(props.entity.name)}
+							type="button"
+							className="btn btn-warning m-2">
+							<i className="far fa-heart" />
+						</button>
+					</span>
+				</div>
+			</div>
+		</Fragment>
+	);
+};
 
 Card.propTypes = {
-	person: PropTypes.object,
+	entity: PropTypes.object,
+	index: PropTypes.number,
 	label1: PropTypes.string,
 	label2: PropTypes.string,
 	label3: PropTypes.string,
