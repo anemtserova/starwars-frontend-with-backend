@@ -5,9 +5,12 @@ import { Context } from "../store/appContext";
 
 export const Card = props => {
 	const { store, actions } = useContext(Context);
+	let found = store.favorites.find(elem => elem == props.entity.name);
+	console.log(found);
+
 	return (
 		<Fragment>
-			<div className="card" style={{ width: "18rem" }}>
+			<div className="card m-3" style={{ width: "18rem" }}>
 				<img src={props.cardImg} className="card-img-top " alt="..." />
 				<div className="card-body">
 					<h5 className="card-title">{props.entity.name}</h5>
@@ -34,10 +37,10 @@ export const Card = props => {
 					</Link>
 					<span>
 						<button
-							onClick={() => actions.addFavorite(props.entity.name)}
+							onClick={found ? null : () => actions.addFavorite(props.entity.name)}
 							type="button"
 							className="btn btn-warning m-2">
-							<i className="far fa-heart" />
+							{found ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
 						</button>
 					</span>
 				</div>

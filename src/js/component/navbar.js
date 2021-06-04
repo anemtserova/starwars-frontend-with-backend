@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/home.scss";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -10,14 +11,14 @@ export const Navbar = () => {
 	let show = "";
 	if (clickedDropdown) show = "show";
 	return (
-		<nav className="navbar navbar-light bg-white mb-3">
+		<nav className="navbar navbar-light bg-theme">
 			<Link to="/">
 				<img
 					src="https://s2.qwant.com/thumbr/474x355/d/8/d51ec8e1645879f6240dc8174e2744573b739b3775975d3ad35b2370198cd7/th.jpg?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.EPNdWHyX5uLGM-d886JZkwHaFj%26pid%3DApi&q=0&b=1&p=0&a=0"
-					className="navbar-brand mb-2 w-75 h-auto "
+					className="navbar-brand m-auto w-75 h-auto "
 				/>
 			</Link>
-			<div className={"ml-auto dropdown" + (showDropdown ? "show" : "")}>
+			<div className={"dropdown" + (showDropdown ? "show" : "")}>
 				<button
 					onClick={() => setClickedDropdown(!clickedDropdown)}
 					type="button"

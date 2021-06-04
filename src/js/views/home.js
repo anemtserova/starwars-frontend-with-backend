@@ -56,8 +56,8 @@ export const Home = () => {
 	}, []);
 
 	return (
-		<div className="container-fluid">
-			<h1>Characters</h1>
+		<div className="container-fluid ">
+			<h1 className="text-dark mt-4 text-center">Characters</h1>
 			<div className="d-flex flex-wrap justify-content-center">
 				{characters.length > 1 &&
 					characters.map((char, index) => {
@@ -71,7 +71,7 @@ export const Home = () => {
 						);
 					})}
 			</div>
-			<h1>Planets</h1>
+			<h1 className="text-dark mt-4 text-center">Planets</h1>
 			<div className="d-flex flex-wrap justify-content-center">
 				{planets.map((spaceObj, index) => {
 					return (
@@ -85,7 +85,19 @@ export const Home = () => {
 				})}
 			</div>
 			<div>
-				<h1>Vehicles</h1>
+				<h1 className="text-dark mt-4 text-center">Vehicles</h1>
+				<div className="d-flex flex-wrap justify-content-center">
+					{vehicles.map((spacecraft, index) => {
+						return (
+							<Card
+								key={index}
+								index={index}
+								entity={spacecraft}
+								cardImg="https://cdna.artstation.com/p/assets/images/images/005/527/466/large/andrew-kirp-falcon-01.jpg?1491709991"
+							/>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);

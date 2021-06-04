@@ -2,17 +2,18 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/home.scss";
 
 export const Details = props => {
 	const { store, actions } = useContext(Context);
 	let state = useLocation().state;
 	return (
-		<div className="card mb-3" style={{ maxWidth: "540px" }}>
-			<div className="row no-gutters">
-				<div className="col-md-4">
-					<img src={state.cardImg} alt="..." />
+		<div className="card m-5" style={{ maxWidth: "40rem" }}>
+			<div className="d-flex ">
+				<div>
+					<img className="img-size" src={state.cardImg} alt="..." />
 				</div>
-				<div className="col-md-8">
+				<div className="">
 					<div className="card-body">
 						<h5 className="card-title">{state.entity.name}</h5>
 						<p className="card-text">
