@@ -10,8 +10,8 @@ export const Card = props => {
 
 	return (
 		<Fragment>
-			<div className="card m-3" style={{ width: "18rem" }}>
-				<img src={props.cardImg} className="card-img-top " alt="..." />
+			<div className="card m-3 bg-dark text-light" style={{ width: "18rem" }}>
+				<img src={props.cardImg} className="card-img-top" alt="..." />
 				<div className="card-body">
 					<h5 className="card-title">{props.entity.name}</h5>
 					<p className="card-text">
@@ -31,7 +31,7 @@ export const Card = props => {
 							pathname: "/details/" + props.index,
 							state: { entity: props.entity, cardImg: props.cardImg }
 						}}>
-						<button type="button" className="btn btn-success">
+						<button type="button" className="btn btn-primary">
 							Read More
 						</button>
 					</Link>
@@ -39,7 +39,7 @@ export const Card = props => {
 						<button
 							onClick={found ? null : () => actions.addFavorite(props.entity.name)}
 							type="button"
-							className="btn btn-warning m-2">
+							className="btn btn-danger m-2">
 							{found ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
 						</button>
 					</span>

@@ -16,6 +16,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			deleteFavs: delFavIndex => {
+				let newFavList = getStore().favorites;
+				newFavList.filter(i => i != delFavIndex);
+				setStore({ favorites: newFavList });
+			},
 			addFavorite: name => {
 				let newFavorites = getStore().favorites;
 				newFavorites.push(name);

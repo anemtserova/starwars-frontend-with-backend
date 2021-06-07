@@ -56,8 +56,8 @@ export const Home = () => {
 	}, []);
 
 	return (
-		<div className="container-fluid ">
-			<h1 className="text-dark mt-4 text-center">Characters</h1>
+		<div className="container-fluid" style={{ background: "black" }}>
+			<h1 className="text-light mt-4 text-center">Characters</h1>
 			<div className="d-flex flex-wrap justify-content-center">
 				{characters.length > 1 &&
 					characters.map((char, index) => {
@@ -66,12 +66,12 @@ export const Home = () => {
 								key={index}
 								index={index}
 								entity={char}
-								cardImg="https://i.pinimg.com/originals/ae/17/72/ae17724e86d6faa2509a1f27cb65aea5.png"
+								cardImg="https://cdn.wallpapersafari.com/75/35/xyNhQA.jpg"
 							/>
 						);
 					})}
 			</div>
-			<h1 className="text-dark mt-4 text-center">Planets</h1>
+			<h1 className="text-light mt-4 text-center text-light">Planets</h1>
 			<div className="d-flex flex-wrap justify-content-center">
 				{planets.map((spaceObj, index) => {
 					return (
@@ -85,7 +85,7 @@ export const Home = () => {
 				})}
 			</div>
 			<div>
-				<h1 className="text-dark mt-4 text-center">Vehicles</h1>
+				<h1 className="text-light mt-4 text-center text-light">Vehicles</h1>
 				<div className="d-flex flex-wrap justify-content-center">
 					{vehicles.map((spacecraft, index) => {
 						return (
