@@ -59,7 +59,7 @@ export const Home = () => {
 		<div className="container-fluid" style={{ background: "black" }}>
 			<h1 className="text-light mt-4 text-center">Characters</h1>
 			<div className="d-flex flex-wrap justify-content-center">
-				{characters.length > 1 &&
+				{characters.length > 0 &&
 					characters.map((char, index) => {
 						return (
 							<Card

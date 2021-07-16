@@ -10,6 +10,11 @@ export const Navbar = () => {
 	const [clickedDropdown, setClickedDropdown] = useState(false);
 	// let show = "";
 	// if (clickedDropdown) show = "show";
+	const showFavs = () => {
+		console.log("hi");
+		setClickedDropdown(!clickedDropdown);
+		setShowDropdown(!showDropdown);
+	};
 
 	return (
 		<nav className="navbar navbar-light bg-theme">
@@ -20,19 +25,19 @@ export const Navbar = () => {
 						className="navbar-brand m-auto w-75 h-auto "
 					/>
 				</Link>
-				<div className="dropdown mr-5 ">
+				<div className={"dropdown mr-5"}>
 					<button
-						onClick={() => store.favorites.length > 0 && setShowDropdown(!showDropdown)}
+						onClick={showFavs}
 						className="btn btn-primary dropdown-toggle "
 						type="button"
 						id="dropdownMenuButton"
 						data-toggle="dropdown"
 						aria-haspopup="true"
-						aria-expanded="false">
+						aria-expanded={clickedDropdown}>
 						Favorites <span className="badge badge-light">{store.favorites.length}</span>
 					</button>
 					<div
-						className={!clickedDropdown && store.favorites.length > 0 ? "dropdown-menu" : "d-none"}
+						className={clickedDropdown && store.favorites.length > 0 ? "dropdown-menu show" : "d-none"}
 						aria-labelledby="dropdownMenuButton">
 						<ul className="list-group ">
 							{store.favorites.map((el, i) => {
