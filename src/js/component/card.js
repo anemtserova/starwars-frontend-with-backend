@@ -37,7 +37,16 @@ export const Card = props => {
 					</Link>
 					<span>
 						<button
-							onClick={found ? null : () => actions.addFavorite(props.entity.name)}
+							onClick={
+								found
+									? null
+									: () =>
+											actions.addFavorite(
+												props.entity.name,
+												props.entity.entyty_type,
+												props.entity.entity_id
+											)
+							}
 							type="button"
 							className="btn btn-danger m-2">
 							{found ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}

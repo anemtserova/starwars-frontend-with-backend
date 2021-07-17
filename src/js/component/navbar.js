@@ -44,7 +44,7 @@ export const Navbar = () => {
 								return (
 									<>
 										<li className="dropdown-item d-flex flex-row justify-content-between" key={i}>
-											<span>{el}</span>
+											<span>{el.name}</span>
 											<i
 												onClick={() => {
 													actions.deleteFavs(i);
