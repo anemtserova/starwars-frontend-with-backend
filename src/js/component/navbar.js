@@ -27,7 +27,7 @@ export const Navbar = () => {
 				</Link>
 				<div className={"dropdown mr-5"}>
 					<button
-						onClick={showFavs}
+						onClick={() => store.favorites.length > 0 && showFavs()}
 						className="btn btn-primary dropdown-toggle "
 						type="button"
 						id="dropdownMenuButton"

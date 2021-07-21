@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			apiAddress: "https://3000-amethyst-frog-vb6b6xzd.ws-eu11.gitpod.io",
-			user: "sarat",
+			user: "claras",
 			favorites: [],
 			demo: [
 				{
@@ -18,24 +18,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
-			deleteFavs: delFavIndex => {
-				let newFavList = getStore().favorites;
-				newFavList.filter((el, i) => i != delFavIndex);
-				setStore({ favorites: newFavList });
-			},
+			// deleteFavs: delFavIndex => {
+			// 	let newFavList = getStore().favorites;
+			// 	newFavList.filter((el, i) => i != delFavIndex);
+			// 	setStore({ favorites: newFavList });
+			// },
 			// addFavorite: name => {
 			// 	let newFavorites = getStore().favorites;
 			// 	newFavorites.push(name);
 			// 	setStore({ favorites: newFavorites });
 			// },
-			addFavorite: (name, entityType, favId) => {
+			addFavorite: (name, entity_type, entity_id) => {
 				let entType = "";
-				if (entityType == "person") {
-					entType = "person";
-				} else if (entityType == "planet") {
-					entType = "planet";
+				if (entity_type == "person") {
+					entType = "/favorite/person/";
+				} else {
+					entType = "/favorite/planet/";
 				}
-				fetch(getStore().apiAddress + "/favorites/" + entType + favId, {
+				fetch(getStore().apiAddress + entType + entity_id, {
 					method: "POST",
 					body: JSON.stringify({
 						username: getStore().user,
@@ -46,8 +46,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(responseJson => console.log(responseJson))
-					.catch(error => console.error("Error:", error));
+					.then(responseJson => setStore({ favorites: responseJson.favorites }))
+					.catch(error => console.log("Looks like there was a problem: \n", error));
+			},
+			deleteFavs: (entity_type, entity_id) => {
+				let entType = "";
+				if (entity_type == "person") {
+					entType = "/favorite/person/";
+				} else {
+					entType = "/favorite/planet/";
+				}
+				fetch(getStore().apiAddress + entType + entity_id, {
+					method: "DELETE",
+					body: JSON.stringify({
+						username: getStore().user
+					}), // data can be `string` or {object}!
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(responseJson => setStore({ favorites: responseJson.favorites }))
+					.catch(error => console.log("Looks like there was a problem: \n", error));
 			},
 			loadFavorites: () => {
 				fetch(getStore().apiAddress + "/" + getStore().user + "/favorites")
